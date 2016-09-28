@@ -29,8 +29,7 @@ $(function() {
         it('have each a URL property defined it is NOT empty', function() {
             for (var i = 0, j = allFeeds.length; i < j; i++) {
                 expect(allFeeds[i].url).toBeDefined();
-                expect(allFeeds[i].url).not.toMatch(/ /); // This makes sure that the url property is not a long strong of spaces
-                expect(allFeeds[i].url.length).not.toBe(0); // Checks if the url property is NOT totally empty
+                expect(allFeeds[i].url).toMatch(re_weburl); // Checks if it is a valid URL. Credit dperini: https://gist.github.com/dperini/729294
             }
         });
 
@@ -48,29 +47,26 @@ $(function() {
             bodyElem = $('body');
         });
         it('is hidden by default', function() {
-            expect(bodyElem.attr('class')).toBe('menu-hidden');
+            expect(bodyElem.hasClass('menu-hidden')).toBeTruthy();
         });
         it('changes visibility with each click', function() {
             var menuElem = $('.menu-icon-link');
 
             menuElem.click();
-            expect(bodyElem.attr('class')).not.toBe('menu-hidden');
+            expect(bodyElem.hasClass('menu-hidden')).toBeFalsy();
             menuElem.click();
-            expect(bodyElem.attr('class')).toBe('menu-hidden');
+            expect(bodyElem.hasClass('menu-hidden')).toBeTruthy();
         })
     });
 
     describe('Initial Entries', function() {
         beforeEach(function(done) {
-            loadFeed(0, function(){
-                done();
-            });
+            loadFeed(0, done);
         });
 
-        it('have at least a single .entry element within the .feed container', function(done) {
+        it('have at least a single .entry element within the .feed container', function() {
             var feedElem = $('.feed').find('.entry').length;
             expect(feedElem).not.toBe(0);
-            done();
         });
     });
 
@@ -79,9 +75,9 @@ $(function() {
         beforeEach(function(done) {
             loadFeed(0, function(){
                 firstCall = $('.feed').find('.entry')[0].innerHTML;
-            });
-            loadFeed(1, function(){
-                done();
+                loadFeed(1, function(){
+                    done();
+                });
             });
         });
 
