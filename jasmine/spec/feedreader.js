@@ -56,7 +56,7 @@ $(function() {
             expect(bodyElem.hasClass('menu-hidden')).toBeFalsy();
             menuElem.click();
             expect(bodyElem.hasClass('menu-hidden')).toBeTruthy();
-        })
+        });
     });
 
     describe('Initial Entries', function() {
