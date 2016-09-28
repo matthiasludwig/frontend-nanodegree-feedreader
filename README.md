@@ -1,6 +1,6 @@
 # Project Overview
 
-This project is part of the Frontend Webdeveloper Nanodegree by Udacity.
+This project is part of the [Frontend Webdeveloper Nanodegree by Udacity](https://www.udacity.com/nanodegree).
 
 ## How to run
 
