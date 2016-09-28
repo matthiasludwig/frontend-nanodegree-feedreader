@@ -26,11 +26,13 @@ $(function() {
             expect(allFeeds.length).not.toBe(0);
         });
 
-
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
-         * and that the URL is not empty.
-         */
+        it('have each a URL property defined it is NOT empty', function() {
+            for (var i = 0, j = allFeeds.length; i < j; i++) {
+                expect(allFeeds[i].url).toBeDefined();
+                expect(allFeeds[i].url).not.toMatch(/ /); // This makes sure that the url property is not a long strong of spaces
+                expect(allFeeds[i].url.length).not.toBe(0); // Checks if the url property is NOT totally empty
+            }
+        });
 
 
         /* TODO: Write a test that loops through each feed
