@@ -61,8 +61,19 @@ $(function() {
     });
 
     describe('Initial Entries', function() {
+        beforeEach(function(done) {
+            loadFeed(0, function(){
+                done();
+            });
+        });
 
+        it('have at least a single .entry element within the .feed container', function(done) {
+            var feedElem = $('.feed').find('.entry').length;
+            expect(feedElem).not.toBe(0);
+            done();
+        });
     });
+
     /* TODO: Write a new test suite named "Initial Entries" */
 
         /* TODO: Write a test that ensures when the loadFeed
